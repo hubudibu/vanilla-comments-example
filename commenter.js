@@ -11,6 +11,7 @@ fetch('https://newsapi.org/v2/everything?q=javascript&apiKey=e82d6427ef8949058f4
     $article.textContent = articles.articles[0].description;
   });
 
+// Build comment list
 const comments = [
   {
     author: 'Michael J Szymanski',
@@ -36,3 +37,17 @@ const buildComments = () => {
 };
 
 buildComments();
+
+// Add new comment
+const $submit = document.querySelector('#submit');
+const $author = document.querySelector('#author');
+const $comment = document.querySelector('#comment');
+$submit.addEventListener('click', () => {
+  comments.unshift({
+    author: $author.value,
+    comment: $comment.value,
+  })
+  $author.value = '';
+  $comment.value = '';
+  buildComments();
+});
