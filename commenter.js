@@ -10,3 +10,29 @@ fetch('https://newsapi.org/v2/everything?q=javascript&apiKey=e82d6427ef8949058f4
     $title.textContent = articles.articles[0].title;
     $article.textContent = articles.articles[0].description;
   });
+
+const comments = [
+  {
+    author: 'Michael J Szymanski',
+    comment: 'Interesting article',
+  },
+  {
+    author: 'Cory J Harris',
+    comment: 'yes',
+  },
+];
+const $commentContainer = document.querySelector('#commentContainer');
+const buildComments = () => {
+  let commentHTML = '';
+  comments.forEach((comment) => {
+    commentHTML += `
+      <li>
+        <h3>${comment.author}</h3>
+        <p>${comment.comment}</p>
+      </li>
+    `;
+  })
+  $commentContainer.innerHTML = commentHTML;
+};
+
+buildComments();
