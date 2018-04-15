@@ -27,17 +27,19 @@ const comments = [
 const $commentContainer = document.querySelector('#commentContainer');
 const buildComments = () => {
   let commentHTML = '';
-  comments.forEach((comment, index) => {
-    commentHTML += `
-      <li>
-        <h3>${comment.author}</h3>
-        <p>${comment.comment}</p>
-        <button data-action="up" data-id="${index}">+</button>
-        <button data-action="down" data-id="${index}">-</button>
-        <p>${comment.votes}</p>
-      </li>
-    `;
-  })
+  comments
+    .sort((c1, c2) => (c2.votes - c1.votes))
+    .forEach((comment, index) => {
+      commentHTML += `
+        <li>
+          <h3>${comment.author}</h3>
+          <p>${comment.comment}</p>
+          <button data-action="up" data-id="${index}">+</button>
+          <button data-action="down" data-id="${index}">-</button>
+          <p>${comment.votes}</p>
+        </li>
+      `;
+    })
   $commentContainer.innerHTML = commentHTML;
 };
 
